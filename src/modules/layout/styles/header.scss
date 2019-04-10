@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  padding: 0;
+  background-color: #e5e5e5;
+  border-bottom: 1px solid #d9d9d9;
+  justify-content: space-between;
+  height: 30px;
+  align-items: center;
+  .handle-dent{
+    margin-left: 3px;
+    font-size: 16px;
+  }
+  .user {
+    margin-right: 16px;
+
+    ul {
+      list-style-type: none;
+    }
+
+  }
+}

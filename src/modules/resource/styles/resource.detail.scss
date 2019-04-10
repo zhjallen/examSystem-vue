@@ -1,0 +1,19 @@
+.resource-detail {
+  margin-left: 8px;
+  .resource-operation{
+    margin-bottom: 8px;
+  }
+  .row-detail {
+    .col-detail {
+      margin: 6px 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .label {
+        display: inherit;
+        width: 25%;
+        justify-content: flex-end;
+      }
+    }
+  }
+}

@@ -1,0 +1,133 @@
+/*初始化*/
+/* body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} 
+body{background:#fff;color:#333;font-size:12px;font-family:"SimSun","宋体","Arial Narrow";}  */
+ 
+ul,ol{list-style-type:none;} 
+select,input,img,select{vertical-align:middle;} 
+ 
+a{text-decoration:none;} 
+a:link{color:#009;} 
+a:visited{color:#800080;} 
+
+/*顶部tabs*/
+
+.tabs {
+  width: 100%;
+  height: 3rem;
+  background-color: #f5f7fa;
+  padding: 1px;
+  border: 1px solid #e4e7ed;
+}
+.tabs .tabs-component-tabs{
+  margin: 0;
+  
+}
+.tabs .tabs-component-tabs li{
+  width: 45%;
+  float: left;
+  line-height: 3rem;
+  display: inline-block;
+  font-size: 1.4rem;
+  border: 1px solid transparent;
+  margin: -1px -1px 0;
+}
+.tabs .tabs-component-tabs li a{
+  color: #555;
+}
+.tabs .tabs-component-tabs li:first{
+  border-left: 1px solid #66b1ff
+}
+.tabs-component-tab.is-active{
+  background-color: #fff;
+  border-right-color: #dcdfe6;
+  border-left-color: #dcdfe6;
+}
+
+.tabs .tabs-component-tab.is-active a{
+  color: #409eff;
+}
+
+/*右侧筛选框*/
+.list-filter {
+  position: absolute;
+  top: 0.8rem;
+  right: 5px;
+  width: auto;
+}
+.list-filter .el-icon--right::before {
+  font-size: 2rem;
+}
+.el-dropdown-menu .selected-option {
+  background-color: #ecf5ff;
+  color: #66b1ff;
+}
+.el-input .el-input__inner{
+  width: 98% !important;
+  margin: 0;
+}
+
+/*l列表  以fixed的方式固定mescroll的高度*/
+.mescroll {
+  position: fixed;
+  top: 7rem;
+  bottom: 0;
+  height: auto;
+}
+
+
+
+/*列表items*/
+.data-list{
+  padding: 5px 8px 0 3px;
+}
+.data-list li {
+  position: relative;
+  text-align: left;
+  font-size: 1.1rem;
+  color: #333;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  padding: 2px;
+  margin-bottom: 8px;
+  background: #fafafa;
+  -moz-box-shadow: 2px 2px 2px #ddd; /* 老的 Firefox */
+  box-shadow: 2px 2px 2px #ddd;
+}
+.data-list li h3{
+  font-size: 1.2rem;
+  line-height: 3rem;
+  border-bottom: 1px solid #eee;
+}
+.data-list li h3 span{
+  float: right;
+  margin-right: 15px;
+}
+.data-list li p{
+  line-height: 1.8rem;
+}
+.data-list li p.project-name{
+  margin-top: 5px;
+}
+.data-list li p span{
+  font-weight: bold;
+  display: inline-block;
+  width: 5.6rem;
+}
+.data-list li .product-list{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;  
+}
+.data-list li a{
+  margin-top: 6px;
+  display: inline-block;
+  width: 100%;
+  height: 2rem;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+}
+.data-list li a.undo{
+  color: #EA2000;
+}

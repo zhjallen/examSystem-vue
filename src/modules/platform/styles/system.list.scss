@@ -1,0 +1,15 @@
+.systemlist {
+  .operation-button {
+    display: flex;
+  }
+  .el-row {
+    margin-top: 8px;
+    // .el-from-item.el-form-item--small {
+    //   margin-bottom: 8px !important;
+    // }
+  }
+  .resource-pagination{
+    display: flex;
+    justify-content: flex-end;
+  }
+}

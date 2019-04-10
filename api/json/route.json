@@ -1,0 +1,43 @@
+{
+  "userManageList":{
+    "code": "200",
+    "msg": "Successful",
+    "list":[
+      {
+        "employeeId": "GYS00144",
+        "name" : "王二",
+        "sex" : "男",
+        "phoneNumber": "156898966555",
+        "mailbox": "156898966555@163.com"
+      },
+      {
+        "employeeId":"GYS00144",
+        "name" : "潇潇",
+        "sex" : "男",
+        "phoneNumber": "156898966555",
+        "mailbox": "156898966555@163.com"
+      },
+      {
+        "employeeId": "GYS00144",
+        "name" : "六六",
+        "sex" : "男",
+        "phoneNumber": "156898966555",
+        "mailbox": "156898966555@163.com"
+      },
+      {
+        "employeeId": "GYS00144",
+        "name" : "张三",
+        "sex" : "男",
+        "phoneNumber": "156898966555",
+        "mailbox": "156898966555@163.com"
+      },
+      {
+        "employeeId": "GYS00144",
+        "name" : "张三",
+        "sex" : "男",
+        "phoneNumber": "156898966555",
+        "mailbox": "156898966555@163.com"
+      }
+    ]
+  }
+}
