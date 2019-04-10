@@ -3,10 +3,10 @@
     <canvas v-show="false" id="loginAni"></canvas>
     <div class="logo">
       <!-- <img src="../../../../../assets/logo.png" alt="">-->
-      <span>红星云供</span>
+      <span>考试系统</span>
     </div>
     <div class="main-login">
-      <img class="img-login" src="../../../assets/images/background.jpg">
+      <img class="img-login" src="../../../assets/images/login.jpg">
       <div class="login-wrapper">
         <div class="login-block">
           <div class="sys-logo">密码登录</div>
@@ -42,6 +42,12 @@
               >
                 <i slot="prefix" class="fa fa-key"></i>
               </el-input>
+            </el-form-item>
+            <el-form-item prop="type">
+              <el-select  v-model="loginForm.type">
+                <el-option :key="'1'" :value="'1'" :label="'学生'"></el-option>
+                 <el-option :key="'2'" :value="'2'" :label="'管理员'"></el-option>
+              </el-select>
             </el-form-item>
             <!-- <el-form-item class="formItem imageCode" prop="imageCode">
             <el-input
@@ -87,7 +93,8 @@ export default {
       loginFailMessage: "",
       loginForm: {
         username: "",
-        password: ""
+        password: "",
+        type: "1"
       },
       loginRules: {
         username: [
