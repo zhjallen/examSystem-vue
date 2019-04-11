@@ -2,7 +2,7 @@
 
 ## 考试系统前端vue实现
 
-> A Vue.js project
+
 ## 技术栈
 ### 主要技术
 1、目前项目使用了vue、vue-router、vuex
