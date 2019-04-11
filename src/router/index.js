@@ -4,18 +4,14 @@ import homeRouter from "../modules/home/router";
 import loginRouter from "../modules/login/router";
 import layoutRouter from "../modules/layout/router";
 import platFormRouter from "../modules/platform/router";
-import userManage from "../modules/userManage/router";
-import characterManage from "../modules/character/router";
-import resourceRouter from "../modules/resource/router";
-import product from '../modules/productSupplyLibrary/router'
-import agentRouter from "../modules/agent/router";
+
 import store from '../store';
 import api from '../utils/api';
 
 Vue.use(Router)
 let routes = [...loginRouter, ...homeRouter, ...layoutRouter,
-...platFormRouter, ...userManage, ...characterManage, ...resourceRouter,
-...product, ...agentRouter]
+...platFormRouter,
+]
 const router = new Router({
   mode: 'history',
   routes: routes
