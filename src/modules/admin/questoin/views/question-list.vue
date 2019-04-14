@@ -12,11 +12,20 @@
     <el-button size="small" type="primary" class="add-queston">新增试题</el-button>
     <el-table :data="questionList" :stripe="true" size="small" :border="true">
       <el-table-column prop="index" label="序号" width="180"></el-table-column>
-      <el-table-column prop="date" label="日期" width="180"></el-table-column>
-      <el-table-column prop="name" label="姓名" width="180"></el-table-column>
-      <el-table-column prop="address" label="地址"></el-table-column>
+      <el-table-column prop="name" label="题目名称" width="180"></el-table-column>
+      <el-table-column prop="difficulty" label="难易程度" width="180"></el-table-column>
+      <el-table-column prop="type" label="试题类型"></el-table-column>
+      <el-table-column prop="question_main" label="试题题干"></el-table-column>
+      <el-table-column prop="operation" label="操作">
+        <template slot-scope="props">
+          <span>
+            <el-button type="text" size="small" @click="handleDetail(props.row)">详情</el-button>
+            <el-button type="danger" size="small" @click="handleDel(props.row)">删除</el-button>
+          </span>
+        </template>
+      </el-table-column>
     </el-table>
-    <el-pagination background layout="prev, pager, next" :total="1000" small ></el-pagination>
+    <el-pagination class="pagination" background layout="prev, pager, next" :total="1000" small></el-pagination>
   </div>
 </template>
 <script lang="ts">
@@ -41,6 +50,10 @@ export default Vue.extend({
           this.questionList = success.data;
         }
       });
+    },
+    handleDetail(question) {},
+    handleDel(question) {
+        this.$confirm()
     }
   }
 });

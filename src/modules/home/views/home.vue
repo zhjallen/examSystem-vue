@@ -1,18 +1,17 @@
 <template>
-  <div class="home">欢迎使用红星云供系统</div>
+  <div class="home">
+    <home-admin/>
+  </div>
 </template>
 <script>
+import "../styles/home.scss";
+import HomeAdmin from "../components/home.admin.vue";
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+    HomeAdmin
+  }
 };
 </script>
-<style lang="scss" scoped>
-.home {
-  display: flex;
-  justify-content: center;
-  font-size: 2rem;
-  margin-top: 20%;
-}
-</style>
 
 
