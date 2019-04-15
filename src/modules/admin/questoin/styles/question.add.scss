@@ -1,0 +1,20 @@
+.question-detail {
+  .add-option {
+    margin-left: 100px;
+  }
+  .options {
+    .option {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      .el-input {
+        width: 50%;
+      }
+      i {
+        cursor: pointer;
+        color: red;
+        font-size: 20px;
+      }
+    }
+  }
+}

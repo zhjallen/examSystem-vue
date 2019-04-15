@@ -13,6 +13,7 @@ import Vue from "vue";
 import QuestionBasic from "../components/question.basic.vue";
 import QuestionDetail from "../components/question.detail.vue";
 import { addQuestionApi } from "../api.js";
+import "../styles/question.add.scss";
 export default Vue.extend({
   name: "QuestionAdd",
   components: {
