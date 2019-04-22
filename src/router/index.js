@@ -5,12 +5,13 @@ import loginRouter from "../modules/login/router";
 import layoutRouter from "../modules/layout/router";
 import platFormRouter from "../modules/platform/router";
 import questionRouter from "../modules/admin/questoin/router";
+import userRouter from "../modules/admin/userManage/router";
 
 import store from '../store';
 import api from '../utils/api';
 
 Vue.use(Router)
-let routes = [...loginRouter, ...homeRouter, ...layoutRouter,
+let routes = [...loginRouter, ...homeRouter, ...layoutRouter, ...userRouter,
 ...platFormRouter, ...questionRouter
 ]
 const router = new Router({

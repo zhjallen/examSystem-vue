@@ -11,7 +11,7 @@
       <ul>
         <li>
           <el-dropdown size="small">
-            <i class="fa fa-user">{{ userInfo.userDetail&&userInfo.userDetail.name}}</i>
+            <i class="fa fa-user">{{ userInfo&&userInfo.name}}</i>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item class="fa fa-key" @click.native="modifyPassword">修改密码</el-dropdown-item>
               <br>
@@ -52,7 +52,7 @@ export default {
     // else if (now >= 12 && now < 18) this.dayTime = '下午'
     // else if (now >= 18 && now <= 23) this.dayTime = '晚上'
     // else this.dayTime = ''
-    console.log(this.userInfo, "useinfo");
+    
   },
   props: {
     userInfo: {
@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     slideSidebar() {
-      console.log(this.menus, "menus");
+     
 
       this.$store.dispatch("collapseSidebar", !this.sidebarState.isOpen);
     },

@@ -1,38 +1,38 @@
 <template>
-  <transition name="scale-left">
-    <div class="sidebar" :class="{ open: sidebarState.isOpen }">
-      <VuePerfectScrollbar :settings="scrollOption">
-        <el-menu
-          mode="vertical"
-          class="vertical-menu"
-          :default-active="$route.path"
-          :router="true"
-          :collapse="!sidebarState.isOpen"
-          background-color="#202a3a"
-          text-color="#fff"
-        >
-          <template v-for="item in menus">
-            <el-submenu :index="item.treeId" :key="item.treeId">
-              <template slot="title">
-                <i class="fa fa-user"/>
-                <span slot="title">{{item.data.name}}</span>
+   <transition name="scale-left">
+     <div class="sidebar" :class="{ open: sidebarState.isOpen }">
+    <VuePerfectScrollbar :settings="scrollOption">
+      <el-menu
+        mode="vertical"
+        class="vertical-menu"
+        :default-active="$route.path"
+        :router="true"
+        :collapse="!sidebarState.isOpen"
+        background-color="#202a3a"
+        text-color="#fff"
+      >
+        <template v-for="item in userMenus">
+          <el-submenu :index="item.key" :key="item.key">
+            <template slot="title">
+              <i class="fa fa-user"/>
+              <span slot="title">{{item.title}}</span>
+            </template>
+            <template v-if="item.children&&item.children.length>0">
+              <template v-for="childItem in item.children">
+                <el-menu-item
+                  :index="childItem.link"
+                  :key="childItem.key"
+                  class="{active:item.}"
+                  @click="handleMenuItem(childItem)"
+                >{{childItem.title}}</el-menu-item>
               </template>
-              <template v-if="item.children&&item.children.length>0">
-                <template v-for="childItem in item.children">
-                  <el-menu-item
-                    :index="childItem.data.url"
-                    :key="childItem.treeId"
-                    class="{active:item.}"
-                    @click="handleMenuItem(childItem)"
-                  >{{childItem.data.name}}</el-menu-item>
-                </template>
-              </template>
-            </el-submenu>
-          </template>
-        </el-menu>
-      </VuePerfectScrollbar>
+            </template>
+          </el-submenu>
+        </template>
+      </el-menu>
+    </VuePerfectScrollbar>
     </div>
-  </transition>
+   </transition>
 </template>
 
 <script>
@@ -40,6 +40,7 @@ import { mapGetters } from "vuex";
 // import SidebarMenuItem from './SidebarMenuItem'
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 import "../styles/sidebar.scss";
+import menus from "../model.ts";
 
 export default {
   name: "Sidebar",
@@ -51,7 +52,8 @@ export default {
     return {
       scrollOption: {
         suppressScrollX: true
-      }
+      },
+      menus: menus
     };
   },
   computed: {
@@ -65,18 +67,21 @@ export default {
         default:
           return "#304156";
       }
+    },
+    userMenus() {
+      console.log(this.menus);
+      return this.menus.admin;
     }
   },
   props: {
-    menus: {
-      type: Array,
-      required: true,
-      default: () => []
-    }
+    // menus: {
+    //   type: Array,
+    //   required: true,
+    //   default: () => []
+    // }
   },
   methods: {
-    handleMenuItem(menuItem) {
-    }
+    handleMenuItem(menuItem) {}
   }
 };
 </script>

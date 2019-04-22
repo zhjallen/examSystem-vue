@@ -44,6 +44,24 @@
         </el-form-item>
       </el-form>
     </template>
+    <template v-if="questionType===5">
+      <el-form label-width="100px" label-suffix=":">
+        <el-form-item label="答案设置">
+          <el-input type="textarea"/>
+        </el-form-item>
+      </el-form>
+    </template>
+    <div class="anser">
+      <el-form label-width="100px" label-suffix=":">
+        <el-row>
+          <el-col :span="20">
+            <el-form-item label="答案解析">
+              <el-input></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
+    </div>
   </div>
 </template>
 <script lang="ts">

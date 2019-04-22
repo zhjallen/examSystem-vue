@@ -1,6 +1,10 @@
 
 const userRouter = [
   {
+    path:"/",
+    redirect: 'home'
+  },
+  {
     path: '/login',
     name: 'login',
     component: resolve => require(['./views/login.vue'], resolve),

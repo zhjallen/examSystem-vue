@@ -44,9 +44,9 @@
               </el-input>
             </el-form-item>
             <el-form-item prop="type">
-              <el-select  v-model="loginForm.type">
-                <el-option :key="'1'" :value="'1'" :label="'学生'"></el-option>
-                 <el-option :key="'2'" :value="'2'" :label="'管理员'"></el-option>
+              <el-select v-model="loginForm.type">
+                <el-option :key="'2'" :value="'2'" :label="'学生'"></el-option>
+                <el-option :key="'1'" :value="'1'" :label="'管理员'"></el-option>
               </el-select>
             </el-form-item>
             <!-- <el-form-item class="formItem imageCode" prop="imageCode">
@@ -136,16 +136,15 @@ export default {
               ...this.loginForm
             })
             .then(successData => {
-              const getData = successData.data;
               this.isLoginning = false;
-              console.log(getData.code, "succ");
-              if (getData.code === 200) {
+              console.log(successData, "succ");
+              if (successData.status === 200) {
                 // 登录成功
                 this.isLoginning = false;
                 this.$router.replace("/home");
-              } else {
+              } else if (successData.status === 204) {
                 this.loginFail = true;
-                this.loginFailMessage = getData.message;
+                this.loginFailMessage = "用户名或密码错误";
               }
             })
             .catch(error => {

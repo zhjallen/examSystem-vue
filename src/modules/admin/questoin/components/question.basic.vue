@@ -9,12 +9,12 @@
       :model="basicForm"
     >
       <el-row>
-        <el-col :span="8">
+        <el-col :span="6">
           <el-form-item :label="'名称'" prop="name">
             <el-input :clearable="true" v-model="basicForm.name"/>
           </el-form-item>
         </el-col>
-        <el-col :span="8">
+        <el-col :span="6">
           <el-form-item :label="'试题类型'" prop="type" v-model="basicForm.type">
             <el-select v-model="basicForm.type" @change="typeChange">
               <template v-for="item in typeModel">
@@ -23,13 +23,18 @@
             </el-select>
           </el-form-item>
         </el-col>
-        <el-col :span="8">
+        <el-col :span="6">
           <el-form-item :label="'试题难度'" prop="difficulty">
             <el-select v-model="basicForm.difficulty">
               <template v-for="item in difficultyModel">
                 <el-option :key="item.value" :value="item.value" :label="item.label"></el-option>
               </template>
             </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item  :label="'分值'" prop="score">
+            <el-input-number :min="1" :max="99" v-model="basicForm.score"/>
           </el-form-item>
         </el-col>
       </el-row>
@@ -57,7 +62,8 @@ export default Vue.extend({
         type: 1,
         difficulty: 1,
         question_main: "",
-        status: 1
+        status: 1,
+        score: null
       },
       basicFormRules: {
         name: [
@@ -88,13 +94,9 @@ export default Vue.extend({
             trigger: "blur"
           }
         ],
-        date2: [
-          {
-            type: "date",
-            required: true,
-            message: "请选择时间",
-            trigger: "change"
-          }
+        score: [
+          { required: true, message: "请输入分值", trigger: "change" },
+          
         ],
 
         resource: [

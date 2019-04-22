@@ -4,11 +4,11 @@ import { getDataUrl } from "../../../utils/functions/objFunc";
 const actions = {
   userLogin({ commit, state }, params) {
     return new Promise((resolve, reject) => {
-      api.get("/passport/pc/login", {
+      api.get("/login", {
         params
       }).then(success => {
         resolve(success)
-        commit("SAVE_UERINFO", success.data.dataMap)
+        commit("SAVE_UERINFO", success.data)
       }).catch(error => {
         reject(error)
         commit("SAVE_UERINFO", { userName: "登录失败" })

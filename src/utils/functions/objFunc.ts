@@ -18,3 +18,16 @@ export function getDataUrl(data: Object) {
     })
     return paramsUrl;
 }
+/**
+ * 处理查询条件
+ * @param queryObj 获取到的查询对象
+ */
+export function getQueryParams(queryObj: Object) {
+    const queryParams = {};
+    Object.keys(queryObj).map(key => {
+        if (queryObj[key] && typeof (queryObj[key] === "string")) {
+            queryParams[key] = queryObj[key].trim();
+        }
+    })
+    return queryParams;
+}
