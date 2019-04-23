@@ -1,5 +1,5 @@
 <template>
-  <div class="user-list-search">
+  <div class="user-list-search light-border">
     <el-form
       :model="searchForm"
       ref="userSearchForm"
@@ -18,7 +18,7 @@
             <el-input v-model="searchForm.username"></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="6" class="button">
           <el-button type="primary" size="small" @click="searchUser">查询</el-button>
           <el-button size="small" @click="resetSearch">清空</el-button>
         </el-col>

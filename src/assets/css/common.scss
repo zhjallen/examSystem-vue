@@ -89,15 +89,19 @@ body {
   border: 1px solid $light-border-color;
   border-radius: 5px;
 }
+.pagination-end {
+  display: flex;
+  justify-content: flex-end;
+}
 .search-form {
   .el-form-item__label {
     min-width: 30%;
   }
   .el-form-item {
     width: 100%;
-    .el-form-item__content{
+    .el-form-item__content {
       width: 60%;
-      input:last-child{
+      input:last-child {
         width: 100%;
       }
     }
