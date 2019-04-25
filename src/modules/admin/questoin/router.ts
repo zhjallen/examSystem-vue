@@ -4,7 +4,7 @@ const questionRouter = [{
   component: Layout, 
   children: [
     {
-      path: 'admin/questionlist',
+      path: 'admin/question/list',
       name: 'QuestionList',
       component: resolve => require(['./views/question-list.vue'], resolve),
       meta: { title: '试题列表', icon: 'fdddfont el-icon-document' }

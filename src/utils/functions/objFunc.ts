@@ -25,8 +25,10 @@ export function getDataUrl(data: Object) {
 export function getQueryParams(queryObj: Object) {
     const queryParams = {};
     Object.keys(queryObj).map(key => {
-        if (queryObj[key] && typeof (queryObj[key] === "string")) {
+        if (queryObj[key] && typeof (queryObj[key]) === "string") {
             queryParams[key] = queryObj[key].trim();
+        } else {
+            queryParams[key] = queryObj[key];
         }
     })
     return queryParams;
