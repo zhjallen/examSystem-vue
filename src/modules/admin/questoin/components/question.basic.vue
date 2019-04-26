@@ -96,9 +96,7 @@ export default Vue.extend({
         ],
         score: [
           { required: true, message: "请输入分值", trigger: "change" },
-          
         ],
-
         resource: [
           { required: true, message: "请选择活动资源", trigger: "change" }
         ]

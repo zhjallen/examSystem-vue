@@ -4,16 +4,37 @@
       v-if="item.elementType==='input'"
       v-bind="$attrs"
       v-on="$listeners"
+      :placeholder="item.placeholder"
       v-model="formModel[`${item.key}`]"
+      :disabled="item.disabled"
     ></el-input>
-    <el-select v-model="formModel[`${item.key}`]" v-else-if="item.elementType==='select'">
+    <el-select
+      @changeLever="change(item.key)"
+      :clearable="item.clearable"
+      :disabled="item.disabled"
+      v-model="formModel[`${item.key}`]"
+      v-else-if="item.elementType==='select'"
+    >
       <el-option
-        v-for="option in (item.selectOptions||[])"
-        :key="option.value"
+        v-for="(option,key) in (item.selectOptions||[])"
+        :key="key"
         :value="option.value"
         :label="option.label"
       ></el-option>
     </el-select>
+    <el-cascader
+      v-else-if="item.elementType==='cascader'"
+      v-model="formModel[`${item.key}`]"
+      :options="item.selectOptions"
+      @change="handleChange"
+    ></el-cascader>
+    <el-date-picker
+      v-else-if="item.elementType==='time'"
+      v-model="formModel[`${item.key}`]"
+      type="date"
+      :disabled="item.disabled"
+      placeholder="选择日期"
+    ></el-date-picker>
   </el-form-item>
 </template>
 <script lang="ts">
