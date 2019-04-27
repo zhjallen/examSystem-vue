@@ -5,7 +5,7 @@
       <el-button type="primary" @click="addUser" size="mini">新增用户</el-button>
     </div>
 
-    <el-table :data="userList" stripe>
+    <el-table :data="userList" stripe size="small" :border="true" class="header-table">
       <el-table-column type="index" label="序号" width="50"></el-table-column>
       <el-table-column property="name" label="姓名" width="120"></el-table-column>
       <el-table-column property="username" label="用户名" width="120"></el-table-column>
@@ -107,6 +107,7 @@ export default Vue.extend({
       totalNum: 0
     };
   },
+  props:{},
   components: {
     UserAdd,
     UserListSearch

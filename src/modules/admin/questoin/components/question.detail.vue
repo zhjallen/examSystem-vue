@@ -66,6 +66,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
+import { delQuestionApi } from "../api";
 export default Vue.extend({
   name: "QuestionDetail",
   data: function() {
@@ -153,6 +154,7 @@ export default Vue.extend({
     },
     delOption(type, item) {
       const model = this[`type${type}Model`];
+      model.radioModel = null;
       if (type === 1) {
         if (model.options.length > 2) {
           const findIndex = model.options.findIndex(
@@ -169,6 +171,29 @@ export default Vue.extend({
           return;
         }
         // const model = this[`type${type}Model`];
+      }
+    },
+    saveOptions() {
+      const detailModel = this[`type${this.questionType}Model`];
+      switch (this.questionType) {
+        case 1:
+          if (!detailModel.radioModel) {
+            this.$message({
+              type: "error",
+              message: "至少选择一项"
+            });
+            return;
+          } else {
+            return detailModel.options.map(item=>{
+              return Object.assign({},item,{
+                name:`选型${item.key}`,
+                isRight:item.key===detailModel.radioModel?1:0
+              })
+            })
+          }
+
+        default:
+          break;
       }
     }
   }

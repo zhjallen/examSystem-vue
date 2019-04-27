@@ -9,7 +9,6 @@
       :disabled="item.disabled"
     ></el-input>
     <el-select
-      @changeLever="change(item.key)"
       :clearable="item.clearable"
       :disabled="item.disabled"
       v-model="formModel[`${item.key}`]"
@@ -26,7 +25,6 @@
       v-else-if="item.elementType==='cascader'"
       v-model="formModel[`${item.key}`]"
       :options="item.selectOptions"
-      @change="handleChange"
     ></el-cascader>
     <el-date-picker
       v-else-if="item.elementType==='time'"
@@ -54,16 +52,6 @@ export default Vue.extend({
   }
 });
 </script>
-<style lang="scss">
-.el-form-item {
-  width: 100%;
-  .el-form-item__content {
-    width: 60%;
-    input:last-child {
-      width: 100%;
-    }
-  }
-}
-</style>
+
 
 

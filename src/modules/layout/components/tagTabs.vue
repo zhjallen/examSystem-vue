@@ -132,7 +132,7 @@ export default {
 
 <style lang="scss" scoped>
 .tag-tabs {
-  background-color: #ffffff;
+  background-color: #f2f2f2;
   // box-shadow: 10px 0 15px -6px rgba(0, 0, 0, 0.4) inset;
   height: 30px;
   // margin-top: 5px;
@@ -191,9 +191,9 @@ export default {
 
     &.active {
       // position: relative;
-      background-color: #0d90ee;
-      color: #fff;
-      border: 1px solid #0d90ee;
+      // background-color: #0d90ee;
+      // color: #fff;
+      border-top: 2px solid #0d90ee;
 
       span.top-line {
         width: 100%;

@@ -111,9 +111,11 @@ body {
   margin-bottom: 8px !important;
 }
 .header-table {
-  th,
-  td {
-    background-color: #eeeeee;
+  thead {
+    th,
+    td {
+      background-color: #eeeeee;
+    }
   }
 }
 h1,

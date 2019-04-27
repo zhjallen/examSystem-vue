@@ -1,9 +1,9 @@
 <template>
   <div class="question-list">
     <question-list-search @searchQuestion="searchQuestion"/>
-    <el-button size="small" type="primary" class="add-queston">新增试题</el-button>
-    <el-table :data="questionList" :stripe="true" size="small" :border="true">
-      <el-table-column type="index" label="序号" width="180"></el-table-column>
+    <el-button size="small" type="primary" class="add-queston" @click="enterAddQuestion">新增试题</el-button>
+    <el-table :data="questionList" :stripe="true" size="small" :border="true" class="header-table">
+      <el-table-column type="index" label="序号" width="60"></el-table-column>
       <el-table-column prop="name" label="试题名称" width="180"></el-table-column>
       <el-table-column prop="difficulty" label="难易程度" width="180">
         <template slot-scope="props">
@@ -16,9 +16,8 @@
         </template>
       </el-table-column>
       <el-table-column prop="question_main" label="试题题干"></el-table-column>
-      <el-table-column prop="created_at" label="创建时间">
-      
-      </el-table-column>
+      <el-table-column prop="score" label="分数" width="80"></el-table-column>
+      <el-table-column prop="created_at" label="创建时间"></el-table-column>
       <el-table-column prop="operation" label="操作">
         <template slot-scope="props">
           <span>
@@ -35,14 +34,22 @@
       :total="totalNum"
       small
     ></el-pagination>
+    <el-dialog :visible.sync="isShowDetail" title="试题详情">
+      <!-- <slot name="title">
+        <span>试题详情</span>
+      </slot>-->
+      <question-detail :questionDetail="questionInfo"/>
+    </el-dialog>
   </div>
 </template>
 <script lang="ts">
 import Vue from "vue";
+import QuestionDetail from "./question.detail.vue";
 import { getQuestionListApi, delQuestionApi, getQuestionApi } from "../api.js";
 import { questionBasicModel } from "../model/questionBasicModel";
 import QuestionListSearch from "../components/question.list.search.vue";
 import { getQueryParams } from "../../../../utils/functions/objFunc";
+import * as questionFunc from "../func";
 import "../styles/question-list.scss";
 import moment from "moment";
 export default Vue.extend({
@@ -52,10 +59,12 @@ export default Vue.extend({
       questionList: [],
       queryParams: {},
       currentPage: 1,
-      totalNum: 0
+      totalNum: 0,
+      isShowDetail: false,
+      questionInfo: {}
     };
   },
-  components: { QuestionListSearch },
+  components: { QuestionListSearch, QuestionDetail },
   mounted: function() {
     this.getQuestionList({ page: 1 });
   },
@@ -70,7 +79,10 @@ export default Vue.extend({
         if (success.status === 200) {
           this.questionList = success.data.questions.map(item => {
             return Object.assign({}, item, {
-              created_at: moment(item.created_at).utc().zone(0).format("YYYY-MM-DD HH:mm:ss")
+              created_at: moment(item.created_at)
+                .utc()
+                .zone(0)
+                .format("YYYY-MM-DD HH:mm:ss")
             });
           });
           this.totalNum = success.data.total;
@@ -83,7 +95,19 @@ export default Vue.extend({
     },
     handleDetail(question) {
       getQuestionApi(question.id).then(getData => {
-        console.log(getData.data, "data");
+        if (getData.status === 200) {
+          console.log(getData.data, "ddddddddd");
+          const questionInfo = getData.data;
+          const questionBasicInfo = {
+            ...questionInfo,
+            type: questionFunc.getQuestionType(questionInfo.type),
+            difficulty: questionFunc.getQuestionDifficulty(
+              questionInfo.difficulty
+            )
+          };
+          this.questionInfo = questionBasicInfo;
+          this.isShowDetail = true;
+        }
       });
     },
 
@@ -105,26 +129,17 @@ export default Vue.extend({
         .catch(() => {
           return;
         });
+    },
+    enterAddQuestion() {
+      this.$router.push("/admin/question/add");
     }
   },
   filters: {
     questionTypeFilter(type) {
-      if (type) {
-        const typeObj = questionBasicModel.typeModel.find(
-          item => item.value == type
-        );
-        if (typeObj) {
-          return typeObj.label;
-        }
-      }
+      return questionFunc.getQuestionType(type);
     },
     questionDifficultyFilter(difficulty) {
-      if (difficulty) {
-        const difficultyObj = questionBasicModel.difficultyModel.find(
-          item => item.value == difficulty
-        );
-        return difficultyObj && difficultyObj.label;
-      }
+      return questionFunc.getQuestionDifficulty(difficulty);
     }
   }
 });

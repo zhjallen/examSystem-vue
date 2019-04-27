@@ -1,7 +1,7 @@
 <template>
   <div class="question-add">
     <question-basic ref="basicInfo" v-on:typeChange="questionTypeChange"/>
-    <question-detail :questionType="questionType"/>
+    <question-detail ref="detailInfo" :questionType="questionType"/>
     <div class="opetation">
       <el-button type="primary" size="small" @click="confirmAdd">确定</el-button>
       <el-button size="small">取消</el-button>
@@ -28,11 +28,20 @@ export default Vue.extend({
   methods: {
     confirmAdd() {
       // console.log(this.$refs["basicInfo"].save());
-      const basicInfo =this.$refs["basicInfo"].save();
-      console.log(basicInfo,"basicino")
+      const basicInfo = this.$refs["basicInfo"].save();
       if (basicInfo) {
-        addQuestionApi(basicInfo);
+        const detailOptions = this.$refs["detailInfo"].saveOptions();
+        console.log(basicInfo, detailOptions, "basicino");
+        addQuestionApi({ basicInfo, options: detailOptions }).then(
+          getData => {
+            console.log(getData, "add");
+          }
+        );
       }
+
+      // if (basicInfo) {
+      //   addQuestionApi(basicInfo);
+      // }
     },
     questionTypeChange(questionType) {
       console.log(questionType, "type");
