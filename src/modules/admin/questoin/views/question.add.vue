@@ -2,6 +2,17 @@
   <div class="question-add">
     <question-basic ref="basicInfo" v-on:typeChange="questionTypeChange"/>
     <question-detail ref="detailInfo" :questionType="questionType"/>
+    <div class="anwser">
+      <el-form label-width="100px" label-suffix=":">
+        <el-row>
+          <el-col :span="20">
+            <el-form-item label="答案解析">
+              <el-input v-model="answerKey" clearable></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
+    </div>
     <div class="opetation">
       <el-button type="primary" size="small" @click="confirmAdd">确定</el-button>
       <el-button size="small">取消</el-button>
@@ -22,7 +33,8 @@ export default Vue.extend({
   },
   data: function() {
     return {
-      questionType: 1
+      questionType: 1,
+      answerKey: ""
     };
   },
   methods: {
@@ -31,12 +43,19 @@ export default Vue.extend({
       const basicInfo = this.$refs["basicInfo"].save();
       if (basicInfo) {
         const detailOptions = this.$refs["detailInfo"].saveOptions();
-        console.log(basicInfo, detailOptions, "basicino");
-        addQuestionApi({ basicInfo, options: detailOptions }).then(
-          getData => {
-            console.log(getData, "add");
+        addQuestionApi({
+          basicInfo: { ...basicInfo, answerKey: this.answerKey },
+          options: detailOptions
+        }).then(getData => {
+          console.log(getData, "add");
+          if (getData.status === 201) {
+            this.$message({
+              type: "success",
+              message: "新增试题成功"
+            });
+           this.closeTag(this.$route);
           }
-        );
+        });
       }
 
       // if (basicInfo) {

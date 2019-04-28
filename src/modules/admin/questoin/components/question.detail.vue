@@ -45,23 +45,16 @@
       </el-form>
     </template>
     <template v-if="questionType===5">
-      <el-form label-width="100px" label-suffix=":">
-        <el-form-item label="答案设置">
-          <el-input type="textarea"/>
+      <el-form ref="questionAndAnswer" :model="type5Model" label-width="100px" label-suffix=":">
+        <el-form-item
+          label="答案设置"
+          prop="content"
+          :rules="[{ required: true, message: '请输入试题答案', trigger: 'blur' }]"
+        >
+          <el-input v-model="type5Model.content" type="textarea"/>
         </el-form-item>
       </el-form>
     </template>
-    <div class="anser">
-      <el-form label-width="100px" label-suffix=":">
-        <el-row>
-          <el-col :span="20">
-            <el-form-item label="答案解析">
-              <el-input></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-form>
-    </div>
   </div>
 </template>
 <script lang="ts">
@@ -71,7 +64,6 @@ export default Vue.extend({
   name: "QuestionDetail",
   data: function() {
     return {
-      type3radio: true,
       type1Model: {
         radioModel: "",
         options: [
@@ -98,7 +90,6 @@ export default Vue.extend({
         ]
       },
       type2Model: {
-        radioModel: "",
         options: [
           {
             selected: false,
@@ -121,6 +112,10 @@ export default Vue.extend({
             key: "D"
           }
         ]
+      },
+      type3radio: true,
+      type5Model: {
+        content: ""
       }
     };
   },
@@ -184,14 +179,54 @@ export default Vue.extend({
             });
             return;
           } else {
-            return detailModel.options.map(item=>{
-              return Object.assign({},item,{
-                name:`选型${item.key}`,
-                isRight:item.key===detailModel.radioModel?1:0
-              })
-            })
+            return detailModel.options.map(item => {
+              return Object.assign({}, item, {
+                name: `选型${item.key}`,
+                isRight: item.key === detailModel.radioModel ? 1 : 0
+              });
+            });
           }
-
+        case 2:
+          const selectedOptions = detailModel.options.filter(
+            item => item.selected === true
+          );
+          if (selectedOptions.length < 1) {
+            this.$message({
+              type: "error",
+              message: "至少需要选择一项"
+            });
+            return;
+          } else {
+            return detailModel.options.map(item => {
+              return Object.assign({}, item, {
+                name: `选项${item.key}`,
+                isRight: item.selected ? 1 : 0
+              });
+            });
+          }
+        case 3:
+          const option = {
+            name: "正确",
+            isRight: 1
+          };
+          if (!this.type3radio) {
+            option.name = "错误";
+          }
+          return [option];
+        case 5:
+          let questionAndAnswerOptions = [];
+          this.$refs["questionAndAnswer"].validate(valid => {
+            if (valid) {
+              questionAndAnswerOptions = [
+                {
+                  content: this.type5Model.content
+                }
+              ];
+            }
+          });
+          if (questionAndAnswerOptions.length > 0) {
+            return questionAndAnswerOptions;
+          }
         default:
           break;
       }
@@ -199,4 +234,3 @@ export default Vue.extend({
   }
 });
 </script>
-
