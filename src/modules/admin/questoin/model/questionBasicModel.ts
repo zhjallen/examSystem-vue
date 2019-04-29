@@ -17,7 +17,8 @@ const questionBasicModel = {
         {
             showName: "试题名称",
             elementType: "input",
-            key: "name"
+            key: "name",
+            disabled: false
         },
         {
             showName: "试题类型",

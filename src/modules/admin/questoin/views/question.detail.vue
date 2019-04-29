@@ -10,11 +10,9 @@
       <el-row>
         <template v-for="item in formArr">
           <el-col :span="24" :key="item.key" v-if="item.key==='options'">
-            <el-form-item label="选项设置">
-                
-            </el-form-item>
+            <el-form-item label="选项设置"></el-form-item>
           </el-col>
-          <el-col :key="item.key" :span="24">
+          <el-col v-else :key="item.key" :span="24">
             <create-form-item :item="item" :formModel="questionDetail"/>
           </el-col>
         </template>
@@ -30,7 +28,10 @@ export default Vue.extend({
   name: "QuestionDetail",
   data: function() {
     return {
-      formArr: questionBasicModel.basicFormArr
+      formArr: questionBasicModel.basicFormArr.map(item => {
+        item.disabled = true;
+        return item;
+      })
     };
   },
   props: {
