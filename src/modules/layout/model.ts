@@ -25,6 +25,19 @@ const menuObj = {
                 }
             ]
 
+        },
+        {
+            title: "考试管理",
+            link: "/admin/test",
+            key: "admin_test",
+            children: [
+                {
+                    title: "考试列表",
+                    link: "/admin/test/list",
+                    key: "admin_test_list"
+                }
+            ]
+
         }
     ]
 }

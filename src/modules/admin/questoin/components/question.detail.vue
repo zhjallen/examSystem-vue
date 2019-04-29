@@ -1,5 +1,5 @@
 <template>
-  <div class="question-detail">
+  <div class="question-add-detail">
     <template v-if="questionType===1">
       <div class="add-option">
         <el-button size="small" @click="addOption(1)">增加选项</el-button>
@@ -23,7 +23,7 @@
         <el-button size="small" @click="addOption(2)">增加选项</el-button>
       </div>
       <div class="options">
-        <el-form label-width="100px" label-suffix=":">
+        <el-form label-width="100px" :inline="true" label-suffix=":">
           <el-form-item label="选项设置">
             <template v-for="item in type2Model.options">
               <div :key="item.key" class="option">
@@ -181,7 +181,7 @@ export default Vue.extend({
           } else {
             return detailModel.options.map(item => {
               return Object.assign({}, item, {
-                name: `选型${item.key}`,
+                name: `选项${item.key}`,
                 isRight: item.key === detailModel.radioModel ? 1 : 0
               });
             });

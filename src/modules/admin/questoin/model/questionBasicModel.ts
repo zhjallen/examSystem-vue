@@ -18,21 +18,21 @@ const questionBasicModel = {
             showName: "试题名称",
             elementType: "input",
             key: "name",
-            disabled: false
+            disabled: false,
         },
         {
             showName: "试题类型",
             elementType: "input",
-            key: "type"
+            key: "typeText"
         },
 
         {
             showName: "难度",
             elementType: "input",
-            key: "difficulty"
+            key: "difficultyText"
         },
         {
-            showName: "分数",
+            showName: "分值",
             elementType: "input",
             key: "score"
         },
@@ -41,11 +41,21 @@ const questionBasicModel = {
             elementType: "input",
             key: "question_main"
         },
-        // {
-        //     showName: "题干",
-        //     elementType: "input",
-        //     key: "question_main"
-        // },
+        {
+            showName: "选项",
+            elementType: "input",
+            key: "options"
+        },
+        {
+            showName: "答案",
+            elementType: "input",
+            key: "answer"
+        },
+        {
+            showName: "答案解析",
+            elementType: "input",
+            key: "answerKey"
+        },
     ]
 
 }

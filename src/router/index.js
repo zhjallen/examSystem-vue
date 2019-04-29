@@ -6,13 +6,14 @@ import layoutRouter from "../modules/layout/router";
 import platFormRouter from "../modules/platform/router";
 import questionRouter from "../modules/admin/questoin/router";
 import userRouter from "../modules/admin/userManage/router";
+import testRouter from "./modules/test";
 
 import store from '../store';
 import api from '../utils/api';
 
 Vue.use(Router)
 let routes = [...loginRouter, ...homeRouter, ...layoutRouter, ...userRouter,
-...platFormRouter, ...questionRouter
+...platFormRouter, ...questionRouter, ...testRouter
 ]
 const router = new Router({
   mode: 'history',

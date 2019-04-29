@@ -1,0 +1,25 @@
+.question-detail {
+  .el-form-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    .el-form-item__label {
+      background-color: $base-light-color;
+    }
+    .el-form-item__content {
+      width: calc(100% - 100px);
+      .el-input__inner {
+        padding: 0 0.5rem;
+        background-color: white;
+        color: black;
+      }
+    }
+  }
+  .options{
+    .el-form-item__content{
+      border: 1px solid $base-light-color;
+      border-radius: 5px;
+      padding-left: 0.5rem;
+    }
+  }
+}
