@@ -16,7 +16,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="question_main" label="试题题干"></el-table-column>
-      <el-table-column prop="score" label="分数" width="80"></el-table-column>
+      <el-table-column prop="score" label="分值" width="80"></el-table-column>
       <el-table-column prop="created_at" label="创建时间"></el-table-column>
       <el-table-column prop="operation" label="操作">
         <template slot-scope="props">
@@ -100,8 +100,8 @@ export default Vue.extend({
           const questionInfo = getData.data;
           const questionBasicInfo = {
             ...questionInfo,
-            type: questionFunc.getQuestionType(questionInfo.type),
-            difficulty: questionFunc.getQuestionDifficulty(
+            typeText: questionFunc.getQuestionType(questionInfo.type),
+            difficultyText: questionFunc.getQuestionDifficulty(
               questionInfo.difficulty
             )
           };

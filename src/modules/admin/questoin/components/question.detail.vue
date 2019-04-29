@@ -181,7 +181,7 @@ export default Vue.extend({
           } else {
             return detailModel.options.map(item => {
               return Object.assign({}, item, {
-                name: `选型${item.key}`,
+                name: `选项${item.key}`,
                 isRight: item.key === detailModel.radioModel ? 1 : 0
               });
             });
