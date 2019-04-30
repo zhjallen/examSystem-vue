@@ -94,10 +94,14 @@ body {
   justify-content: flex-end;
 }
 .search-form {
-  .el-form-item__label {
-    min-width: 30%;
-  }
+  border: 1px solid $base-light-color;
+  border-radius: 5px;
+  padding-top: 5px;
   .el-form-item {
+    margin-bottom: 8px;
+    .el-form-item__label {
+      min-width: 30%;
+    }
     width: 100%;
     .el-form-item__content {
       width: 60%;

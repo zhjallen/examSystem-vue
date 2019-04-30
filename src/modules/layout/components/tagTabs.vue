@@ -132,8 +132,8 @@ export default {
 
 <style lang="scss" scoped>
 .tag-tabs {
-  background-color: #f2f2f2;
-  // box-shadow: 10px 0 15px -6px rgba(0, 0, 0, 0.4) inset;
+  background-color: $base-light-color;
+  box-shadow: 10px 0 15px -6px rgba(0, 0, 0, 0.4) inset;
   height: 30px;
   // margin-top: 5px;
   // padding: 7px 0;
@@ -144,14 +144,15 @@ export default {
   .tab-item {
     display: flex;
     align-items: center;
-    padding:6px;
+    padding: 7px 10px 6px 15px;
     box-sizing: border-box;
     cursor: pointer;
     overflow: hidden;
     user-select: none;
     transition: all 0.2s ease 0s;
-    border: 1px solid #d8dce5;
-    margin: 0 2px;
+    border-right: 1px solid #c2c2c2;
+    // margin: 0 2px;
+    background-color: #d4d4d4;
     &.isShowCloseBtn > span {
       padding-right: 10px;
     }
@@ -175,26 +176,27 @@ export default {
         margin: 1px 0 0 2px;
         display: flex;
         align-items: center;
-        justify-content:center;
+        justify-content: center;
         &:before {
           position: relative;
           top: 1px;
         }
 
         &:hover {
-          color: #fff;
+          color: darken($base-red-color, 30%);
           font-weight: 600;
-          background-color: #b4bccc;
+          background-color: lighten($base-red-color, 5%);
         }
       }
     }
 
     &.active {
-      // position: relative;
-      // background-color: #0d90ee;
+      position: relative;
+      background-color: white;
       // color: #fff;
       border-top: 2px solid #0d90ee;
-
+      box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+        0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
       span.top-line {
         width: 100%;
         height: 3px;
@@ -203,10 +205,12 @@ export default {
         top: 0;
         left: 0;
       }
+      &:last-child {
+        border-right: none;
+      }
     }
     &:hover:not(.active) {
       background-color: lighten($base-gray-color, 24%);
-      
     }
   }
 }

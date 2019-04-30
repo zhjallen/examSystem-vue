@@ -44,6 +44,7 @@ export default {
   min-width: 800px;
   margin-top: 8px;
   padding-left: 8px;
+  padding-right: 8px;
   .scroll-area {
     width: 100%;
     height: 100%;
