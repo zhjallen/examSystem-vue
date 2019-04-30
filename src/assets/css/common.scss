@@ -93,6 +93,9 @@ body {
   display: flex;
   justify-content: flex-end;
 }
+.ps__scrollbar-x-rail {
+  display: none !important;
+}
 .search-form {
   border: 1px solid $base-light-color;
   border-radius: 5px;
