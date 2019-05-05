@@ -16,7 +16,7 @@ import Vue from "vue";
 // import CreateFormItem from "../../../../components/create.form.item.vue";
 import TestBasic from "../components/test.basic.vue";
 import { testBasicModelArr } from "../constants/test.add";
-import { addTestApi } from "../../../../api/modules/test";
+import { addTestApi } from "../../../../api/test";
 
 export default Vue.extend({
   name: "TestAdd",
@@ -26,7 +26,9 @@ export default Vue.extend({
   data: function() {
     const testBasicModel = {};
     testBasicModelArr.map(item => {
-      if (item.defaultValue !== undefined) {
+      if (item.key === "testTime") {
+        testBasicModel[item.key] = "";
+      } else if (item.defaultValue !== undefined) {
         testBasicModel[item.key] = item.defaultValue;
       } else {
         testBasicModel[item.key] = null;
@@ -42,7 +44,12 @@ export default Vue.extend({
       const isPass = this.$refs[formName].getInfo();
       if (isPass) {
         console.log(this.testBasicModel, "ispass");
-        addTestApi(this.testBasicModel);
+        const testBasicInfo = {
+          ...this.testBasicModel,
+          startTime: this.testBasicModel["testTime"][0],
+          finishTime: this.testBasicModel["testTime"][1]
+        };
+        addTestApi(testBasicInfo);
       }
     },
     onCancel() {

@@ -1,4 +1,4 @@
-import api from "../../utils/api/index";
+import api from "../utils/api/index";
 
 /**
  * 获取考试列表

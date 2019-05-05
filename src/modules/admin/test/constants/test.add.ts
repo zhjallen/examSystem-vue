@@ -5,7 +5,16 @@ const testBasicModelArr = [
         key: "name",
         rules: [{ required: true, message: "请输入考试名称", trigger: "blur" },],
         colProps: {
-            span: 6,
+            span: 12,
+        }
+    },
+    {
+        showName: "考试时间",
+        elementType: "dateTimeRange",
+        key: "startTime",
+        rules: [{ required: true, message: "请输入考试开始时间", trigger: "blur" },],
+        colProps: {
+            span: 12,
         }
     },
     {
@@ -18,24 +27,16 @@ const testBasicModelArr = [
         ],
         defaultValue: 1,
         colProps: {
-            span: 6,
+            span: 12,
         }
     },
-
-    // {
-    //     showName: "时间设定",
-    //     elementType: "input",
-    //     key: "difficultyText",
-    //     colProps: {
-    //         span: 6,
-    //     }
-    // },
+    
     {
         showName: "考试时长",
         elementType: "input",
         key: "length",
         colProps: {
-            span: 6,
+            span: 12,
         }
     },
     {
@@ -48,7 +49,7 @@ const testBasicModelArr = [
         ],
         defaultValue: 1,
         colProps: {
-            span: 6,
+            span: 12,
         }
     },
     {
@@ -57,7 +58,7 @@ const testBasicModelArr = [
         key: "totalScore",
         defaultValue: 100,
         colProps: {
-            span: 6,
+            span: 12,
         }
     },
     {
@@ -66,7 +67,7 @@ const testBasicModelArr = [
         key: "passScore",
         defaultValue: 60,
         colProps: {
-            span: 6,
+            span: 12,
         }
     },
 ];

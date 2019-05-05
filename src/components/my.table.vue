@@ -19,8 +19,8 @@
           </el-col>
         </template>
         <el-col :span="6">
-          <el-button size="small" type="primary" @click="onSearch">查询</el-button>
-          <el-button size="small" @click="onReset('tableSearchForm')">清空</el-button>
+          <el-button size="mini" type="primary" icon="el-icon-search" @click="onSearch">查询</el-button>
+          <el-button size="mini" icon="el-icon-refresh" @click="onReset('tableSearchForm')">清空</el-button>
         </el-col>
       </el-row>
     </el-form>

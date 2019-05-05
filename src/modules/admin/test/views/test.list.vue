@@ -31,7 +31,7 @@
 import Vue from "vue";
 import MyTable from "../../../../components/my.table.vue";
 import { testListSearchFormArr } from "../constants/test.list";
-import { getTestListApi } from "../../../../api/modules/test";
+import { getTestListApi } from "../../../../api/test";
 export default Vue.extend({
   name: "TestList",
   components: {
