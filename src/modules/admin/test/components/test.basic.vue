@@ -1,7 +1,7 @@
 <template>
   <div class="test-basic">
     <el-form
-      :inline="true"
+      
       ref="testBasic"
       :model="testBasicModel"
       label-width="100px"
@@ -9,7 +9,7 @@
       size="small"
       label-suffix=":"
     >
-      <el-row>
+      <el-row type="flex" justify="space-between">
         <template v-for="formItem in testBasicModelArr">
           <el-col v-bind:key="formItem.key" :span="formItem.colProps&&formItem.colProps.span">
             <el-form-item
@@ -20,7 +20,7 @@
             >
               <el-date-picker
                 v-model="testBasicModel.testTime"
-                type="datetime"
+                type="datetimerange"
                 range-separator="至"
                 start-placeholder="开始日期"
                 end-placeholder="结束日期"

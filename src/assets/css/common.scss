@@ -79,12 +79,26 @@ body {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   padding: 0px;
   margin: 0px;
+  overflow-x: hidden;
   //   position: relative;
   /* -webkit-overflow-scrolling: touch; */
 }
 .fa {
   display: inline;
 }
+.el-form-item {
+  width: 100%;
+  .el-form-item__content{
+    width: 60%;
+    .el-select {
+      width: 100%;
+    }
+  }
+  .el-input__inner {
+    padding: 0 0.5rem;
+  }
+}
+
 .light-border {
   border: 1px solid $light-border-color;
   border-radius: 5px;
