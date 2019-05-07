@@ -27,7 +27,7 @@ export function getQueryParams(queryObj: Object) {
     Object.keys(queryObj).map(key => {
         if (queryObj[key] && typeof (queryObj[key]) === "string") {
             queryParams[key] = queryObj[key].trim();
-        } else {
+        } else if (queryObj[key] || queryObj[key] === 0) {
             queryParams[key] = queryObj[key];
         }
     })

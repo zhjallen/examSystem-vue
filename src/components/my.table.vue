@@ -55,6 +55,7 @@ export default Vue.extend({
   methods: {
     onSearch() {
       console.log(this.searchFormModel, "model");
+      this.$emit("search", this.searchFormModel);
     },
     onReset(formName) {
       this.$refs[formName].resetFields();

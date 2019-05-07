@@ -1,6 +1,6 @@
 const testListSearchFormArr = [
     {
-        showName: "试题名称",
+        showName: "考试名称",
         elementType: "input",
         key: "name",
         colProps: {
@@ -8,37 +8,30 @@ const testListSearchFormArr = [
         }
     },
     {
-        showName: "试题类型",
-        elementType: "input",
-        key: "typeText",
+        showName: "考试状态",
+        elementType: "select",
+        key: "status",
+        selectOptions: [
+            { value: 0, label: "关闭" },
+            { value: 1, label: "开放" },
+        ],
+        clearable: true,
         colProps: {
             span: 6,
         }
     },
 
-    {
-        showName: "难度",
-        elementType: "input",
-        key: "difficultyText",
-        colProps: {
-            span: 6,
-        }
-    },
-    {
-        showName: "分值",
-        elementType: "input",
-        key: "score",
-        colProps: {
-            span: 6,
-        }
-    },
-    {
-        showName: "题干",
-        elementType: "input",
-        key: "question_main",
-        colProps: {
-            span: 6,
-        }
-    },
+    
 ]
-export { testListSearchFormArr };
+
+const testDataOptions = {
+    type: {
+        1: "普通考试",
+        2: "随机考试"
+    },
+    status: {
+        1: "开放",
+        0: "关闭",
+    }
+}
+export { testListSearchFormArr, testDataOptions };

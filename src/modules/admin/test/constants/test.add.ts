@@ -15,19 +15,19 @@ const testBasicModelArr = [
         key: "startTime",
         rules: [{ required: true, message: "请输入考试时间", trigger: "blur" },],
         colProps: {
-            span: 8,
+            span: 16,
         }
     },
     
     
-    // {
-    //     showName: "考试时长",
-    //     elementType: "input",
-    //     key: "length",
-    //     colProps: {
-    //         span: 8,
-    //     }
-    // },
+    {
+        showName: "考试时长",
+        elementType: "input",
+        key: "length",
+        colProps: {
+            span: 8,
+        }
+    },
     {
         showName: "状态",
         elementType: "select",
@@ -41,36 +41,45 @@ const testBasicModelArr = [
             span: 8,
         }
     },
-    // {
-    //     showName: "考试类型",
-    //     elementType: "select",
-    //     key: "type",
-    //     selectOptions: [
-    //         { value: 1, label: "普通考试" },
-    //         { value: 2, label: "随机考试" },
-    //     ],
-    //     defaultValue: 1,
-    //     colProps: {
-    //         span: 8,
-    //     }
-    // },
-    // {
-    //     showName: "总分",
-    //     elementType: "input",
-    //     key: "totalScore",
-    //     defaultValue: 100,
-    //     colProps: {
-    //         span: 8,
-    //     }
-    // },
-    // {
-    //     showName: "及格分数",
-    //     elementType: "input",
-    //     key: "passScore",
-    //     defaultValue: 60,
-    //     colProps: {
-    //         span: 8,
-    //     }
-    // },
+    {
+        showName: "考试类型",
+        elementType: "select",
+        key: "type",
+        selectOptions: [
+            { value: 1, label: "普通考试" },
+            { value: 2, label: "随机考试" },
+        ],
+        defaultValue: 1,
+        colProps: {
+            span: 8,
+        }
+    },
+    {
+        showName: "总分",
+        elementType: "input",
+        key: "totalScore",
+        defaultValue: 100,
+        colProps: {
+            span: 8,
+        }
+    },
+    {
+        showName: "及格分数",
+        elementType: "input",
+        key: "passScore",
+        defaultValue: 60,
+        colProps: {
+            span: 8,
+        }
+    },
+    {
+        showName: "备注",
+        elementType: "input",
+        key: "remark",
+        // defaultValue: 60,
+        colProps: {
+            span: 8,
+        }
+    },
 ];
 export { testBasicModelArr }

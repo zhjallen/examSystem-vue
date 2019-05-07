@@ -17,6 +17,7 @@ import Vue from "vue";
 import TestBasic from "../components/test.basic.vue";
 import { testBasicModelArr } from "../constants/test.add";
 import { addTestApi } from "../../../../api/test";
+import "../styles/test.add.scss";
 
 export default Vue.extend({
   name: "TestAdd",
@@ -43,13 +44,21 @@ export default Vue.extend({
     onAddTest(formName) {
       const isPass = this.$refs[formName].getInfo();
       if (isPass) {
-        console.log(this.testBasicModel, "ispass");
         const testBasicInfo = {
           ...this.testBasicModel,
           startTime: this.testBasicModel["testTime"][0],
           finishTime: this.testBasicModel["testTime"][1]
         };
-        addTestApi(testBasicInfo);
+        addTestApi(testBasicInfo).then(getData => {
+          console.log(getData, "dddddddddd");
+          if (getData.status === 200) {
+            this.$message({
+              type: "success",
+              message: "新增考试成功"
+            });
+            this.closeTag(this.$route);
+          }
+        });
       }
     },
     onCancel() {
