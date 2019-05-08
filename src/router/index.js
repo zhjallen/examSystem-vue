@@ -6,7 +6,7 @@ import layoutRouter from "../modules/layout/router";
 import platFormRouter from "../modules/platform/router";
 import questionRouter from "../modules/admin/questoin/router";
 import userRouter from "../modules/admin/userManage/router";
-import testRouter from "./modules/test";
+import testRouter from "./test";
 
 import store from '../store';
 import api from '../utils/api';

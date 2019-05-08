@@ -4,6 +4,7 @@ import Layout from "../layout/views/index.vue";
 const homeRouter = [{
     path: '',
     component: Layout,
+    redirect: "/home",
     children: [
         {
             path: '/home',

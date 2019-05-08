@@ -1,11 +1,12 @@
 <template>
   <div class="user-list">
     <user-list-search @search="searchUser"></user-list-search>
-    <div class="add-user">
+    <div v-if="!usedPage" class="add-user">
       <el-button type="primary" @click="addUser" size="mini">新增用户</el-button>
     </div>
 
     <el-table :data="userList" stripe size="small" :border="true" class="header-table">
+      <el-table-column v-if="usedPage==='addTest'" type="selection"></el-table-column>
       <el-table-column type="index" label="序号" width="50"></el-table-column>
       <el-table-column property="name" label="姓名" width="120"></el-table-column>
       <el-table-column property="username" label="用户名" width="120"></el-table-column>
@@ -14,14 +15,17 @@
           <span>{{props.row.type | userTypeFilter}}</span>
         </template>
       </el-table-column>
-      <el-table-column property="desc" label="描述" ></el-table-column>
+      <el-table-column property="desc" label="描述"></el-table-column>
       <el-table-column property="operation" label="操作">
-        <template slot-scope="props">
+        <template v-if="!usedPage" slot-scope="props">
           <el-button size="small" @click="editUser(props.row)">编辑</el-button>
           <template v-if="props.row.name!=='admin'">
             <el-button type="danger" size="small" @click="delUser(props.row)">删除</el-button>
           </template>
         </template>
+        <slot name="userOperation">
+
+        </slot>
       </el-table-column>
     </el-table>
     <el-pagination
@@ -107,7 +111,11 @@ export default Vue.extend({
       totalNum: 0
     };
   },
-  props:{},
+  props: {
+    usedPage: {
+      type: String
+    }
+  },
   components: {
     UserAdd,
     UserListSearch

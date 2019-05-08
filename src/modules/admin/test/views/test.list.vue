@@ -20,7 +20,8 @@
           </el-table-column>
           <el-table-column prop="time" label="时间设定" width="180">
             <template slot-scope="props">
-              <span>{{props.row.startTime}}-{{props.row.finishTime}}</span>
+              <div>{{props.row.startTime}}</div>
+              <div>{{props.row.finishTime}}</div>
             </template>
           </el-table-column>
           <el-table-column prop="length" label="考试时长" width="120"></el-table-column>
@@ -34,7 +35,15 @@
           <el-table-column prop="operation" label="操作"></el-table-column>
         </el-table>
       </div>
-      <div slot="pagination">分页</div>
+      <div slot="pagination">
+        <el-pagination
+          class="pagination-end"
+          background
+          layout="total, prev, pager, next"
+          :total="totalNum"
+          small
+        ></el-pagination>
+      </div>
     </my-table>
   </div>
 </template>
@@ -86,6 +95,7 @@ export default Vue.extend({
                 .format("YYYY-MM-DD HH:mm:ss")
             });
           });
+          this.totalNum = getData.data.total;
         }
       });
     },
