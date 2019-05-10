@@ -32,7 +32,15 @@
           </el-table-column>
           <el-table-column prop="totalScore" label="卷面总分"></el-table-column>
           <el-table-column prop="status" label="考试人数"></el-table-column>
-          <el-table-column prop="operation" label="操作"></el-table-column>
+          <el-table-column prop="operation" label="操作">
+            <template slot-scope="props">
+              <div>
+                <el-button round size="small">编辑</el-button>
+                <el-button round size="small" @click="onConfigTest(props.row)">配置</el-button>
+                <el-button round size="small">删除</el-button>
+              </div>
+            </template>
+          </el-table-column>
         </el-table>
       </div>
       <div slot="pagination">
@@ -105,6 +113,10 @@ export default Vue.extend({
     },
     onAddTest() {
       this.$router.push(`/admin/test/add`);
+    },
+    onConfigTest(test) {
+      console.dir(test, "test");
+      this.$store.dispatch("saveTestInfo", test);
     }
   },
   mounted: function() {
