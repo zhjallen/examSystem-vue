@@ -1,0 +1,11 @@
+.test-config {
+  .layout {
+    display: flex;
+    .test-config-basic{
+        width: 70%;
+        // display:inherit;
+        // justify-content: center;
+        border: 1px solid;
+    }
+  }
+}

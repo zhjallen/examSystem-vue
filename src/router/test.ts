@@ -20,6 +20,12 @@ const testRouter = [{
             name: 'QuestionEdit',
             component: resolve => require(['../modules/admin/test/views/test.edit.vue'], resolve),
             meta: { title: '修改考试', icon: 'fdddfont el-icon-document' }
+        },
+        {
+            path: 'admin/test/config',
+            name: 'TestConfig',
+            component: resolve => require(['../modules/admin/test/views/test.config.vue'], resolve),
+            meta: { title: '配置考试', icon: 'fdddfont el-icon-document' }
         }
     ]
 },

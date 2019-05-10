@@ -115,8 +115,8 @@ export default Vue.extend({
       this.$router.push(`/admin/test/add`);
     },
     onConfigTest(test) {
-      console.dir(test, "test");
       this.$store.dispatch("saveTestInfo", test);
+      this.$router.push("/admin/test/config");
     }
   },
   mounted: function() {
