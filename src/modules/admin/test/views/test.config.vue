@@ -11,7 +11,12 @@
           <el-button size="mini">取消</el-button>
         </div>
       </div>
-      <div class="question-list">试题列表</div>
+      <test-config-question-list
+        :questions="questions"
+        @getQuestionList="getQuestionList"
+        @contentAddQuestion="onContentAddQuestion"
+        :totalNum="totalNum"
+      />
     </div>
   </div>
 </template>
@@ -20,6 +25,8 @@ import Vue from "vue";
 import { mapGetters } from "vuex";
 import TestConfigBasic from "../components/test.config.basic.vue";
 import TestConfigContent from "../components/test.config.content.vue";
+import TestConfigQuestionList from "../components/test.config.question.list.vue";
+import { getQuestionListApi } from "../../../../utils/api/question";
 import "../styles/test.config.scss";
 export default Vue.extend({
   name: "TestConfig",
@@ -37,12 +44,17 @@ export default Vue.extend({
           desc: "",
           questions: [],
           sort: 1,
-          key: 1
+          key: 1,
+          isActive: true
         }
-      ]
+      ],
+      questions: [],
+      queryParams: {},
+      currentPage: 1,
+      totalNum: 0
     };
   },
-  components: { TestConfigBasic, TestConfigContent },
+  components: { TestConfigBasic, TestConfigContent, TestConfigQuestionList },
   methods: {
     onConfigTest() {
       console.dir(this.initTest, "testInfo");
@@ -54,9 +66,32 @@ export default Vue.extend({
         desc: "",
         questions: [],
         sort: lastContent.sort + 1,
-        key: lastContent.key + 1
+        key: lastContent.key + 1,
+        isActive: true
       });
+    },
+    getQuestionList(params) {
+      const queryParams = {
+        ...params,
+        ...this.queryParams,
+        pageSize: 10
+      };
+      getQuestionListApi(queryParams).then(success => {
+        console.log(success, "questionsuccess");
+        if (success.status === 200) {
+          this.questions = success.data.questions;
+          this.totalNum = success.data.total;
+        }
+      });
+    },
+    onContentAddQuestion(question) {
+      const activeContent = this.contents.filter(content => content.isActive)[0];
+      console.log(activeContent,"acite")
+      activeContent.questions.push(question);
     }
+  },
+  mounted: function() {
+    this.getQuestionList({ page: 1 });
   }
 });
 </script>

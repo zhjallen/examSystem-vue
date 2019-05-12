@@ -1,16 +1,24 @@
 <template>
   <div class="test-content">
     <template v-for="contentItem in contents">
-      <div :key="contentItem.key" class="content">
-        <el-form :model="contentItem" inline size="small" label-suffix=":">
-          <el-form-item label="章节名称">
+      <div :key="contentItem.key" class="content-item">
+        <el-form :model="contentItem" inline size="small" label-suffix=":" label-width="100px">
+          <el-form-item label="章节名称" prop="name" :rules="contentRules.contentName">
             <el-input v-model="contentItem.name"></el-input>
           </el-form-item>
           <el-form-item label="章节描述">
             <el-input v-model="contentItem.desc"></el-input>
           </el-form-item>
-          <el-form-item v-model="contentItem.questions">
-            <div></div>
+          <el-form-item label="内容" v-model="contentItem.questions">
+            <div
+              class="question"
+              v-bind:class="{active:contentItem.isActive}"
+              @click="onActiveContent(contentItem)"
+            >
+              <template v-for="question in contentItem.questions">
+                <div :key="question.id">{{question.question_main}}</div>
+              </template>
+            </div>
           </el-form-item>
         </el-form>
       </div>
@@ -26,6 +34,28 @@ export default Vue.extend({
       type: Array,
       default: () => [],
       required: true
+    }
+  },
+  data: function() {
+    return {
+      contentRules: {
+        contentName: [
+          { required: true, message: "请输入章节名称", trigger: "blur" }
+        ]
+      }
+    };
+  },
+  methods: {
+    onActiveContent(contentItem) {
+      console.log(contentItem, "contentItem");
+      contentItem.isActive = true;
+      this.contents.map(item => {
+        if (item.key === contentItem.key) {
+          item.isActive = true;
+        } else {
+          item.isActive = false;
+        }
+      });
     }
   }
 });
