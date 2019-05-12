@@ -2,7 +2,14 @@
   <div class="test-content">
     <template v-for="contentItem in contents">
       <div :key="contentItem.key" class="content-item">
-        <el-form :model="contentItem" inline size="small" label-suffix=":" label-width="100px">
+        <el-form
+          :ref="`testContent${contentItem.key}`"
+          :model="contentItem"
+          inline
+          size="small"
+          label-suffix=":"
+          label-width="100px"
+        >
           <el-form-item label="章节名称" prop="name" :rules="contentRules.contentName">
             <el-input v-model="contentItem.name"></el-input>
           </el-form-item>
@@ -57,8 +64,28 @@ export default Vue.extend({
         }
       });
     },
-    getTestContents(){
-      
+    getTestContents() {
+      const newArr = [];
+      this.contents.map(content => {
+        const result = new Promise((resolve, reject) => {
+          this.$refs[`testContent${content.key}`][0].validate(valid => {
+            if (valid) {
+              resolve();
+            } else {
+              reject();
+            }
+          });
+        });
+        newArr.push(result);
+      });
+      return Promise.all(newArr)
+        .then(success => {
+          return true;
+        })
+        .catch(error => {
+          return false;
+        });
+      // return results;
     }
   }
 });

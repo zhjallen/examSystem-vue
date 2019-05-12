@@ -5,7 +5,7 @@
       <div class="test-config-basic">
         <test-config-basic :testInfo="initTest"/>
         <el-button size="mini" @click="onAddContent">新增章节</el-button>
-        <test-config-content :contents="contents"/>
+        <test-config-content :contents="contents" ref="testContents"/>
         <div class="operation">
           <el-button size="mini" type="primary" @click="onConfigTest">提交</el-button>
           <el-button size="mini">取消</el-button>
@@ -57,7 +57,17 @@ export default Vue.extend({
   components: { TestConfigBasic, TestConfigContent, TestConfigQuestionList },
   methods: {
     onConfigTest() {
-      console.dir(this.initTest, "testInfo");
+      this.$refs["testContents"]
+        .getTestContents()
+        .then(success => {
+          console.log(success, "success");
+          if (success) {
+            console.log(this.contents, "contents");
+          }
+        })
+        .catch(error => {
+          console.log(error, "eror");
+        });
     },
     onAddContent() {
       const lastContent = this.contents[this.contents.length - 1];
@@ -85,8 +95,10 @@ export default Vue.extend({
       });
     },
     onContentAddQuestion(question) {
-      const activeContent = this.contents.filter(content => content.isActive)[0];
-      console.log(activeContent,"acite")
+      const activeContent = this.contents.filter(
+        content => content.isActive
+      )[0];
+      console.log(activeContent, "acite");
       activeContent.questions.push(question);
     }
   },
