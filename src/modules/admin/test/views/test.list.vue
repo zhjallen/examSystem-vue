@@ -32,7 +32,7 @@
           </el-table-column>
           <el-table-column prop="totalScore" label="卷面总分"></el-table-column>
           <el-table-column prop="status" label="考试人数"></el-table-column>
-          <el-table-column prop="operation" label="操作">
+          <el-table-column prop="operation" label="操作" width="230">
             <template slot-scope="props">
               <div>
                 <el-button round size="small">编辑</el-button>

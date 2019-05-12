@@ -56,6 +56,9 @@ export default Vue.extend({
           item.isActive = false;
         }
       });
+    },
+    getTestContents(){
+      
     }
   }
 });
