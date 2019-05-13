@@ -34,7 +34,15 @@
       <el-button size="small" @click="onCancel">取消</el-button>
     </div>
     <el-dialog :visible.sync="isShowUsers" title="选择考生" width="70%">
-      <user-list usedPage="addTest"/>
+      <user-list usedPage="addTest" ref="userList">
+        <div slot-scope="userInfo" slot="userOperation">
+          <el-button size="mini" round @click="onConfirmChoiceUser(userInfo)">添加考生</el-button>
+        </div>
+      </user-list>
+      <div slot="footer">
+        <el-button size="mini" @click="onConfirmChoiceUser">确定</el-button>
+        <el-button size="mini" @click="onCancelChoiceUser">取消</el-button>
+      </div>
     </el-dialog>
     <el-dialog
       :visible.sync="isShowConfirmModal"
@@ -46,7 +54,7 @@
     >
       <span>试题新建成功</span>
       <span slot="footer">
-        <el-button size="small" @click="goTestConfig">配置考试</el-button>
+        <el-button size="small" type="primary" @click="goTestConfig">配置考试</el-button>
         <el-button size="small" @click="goTestList">返回考试列表</el-button>
       </span>
     </el-dialog>
@@ -82,7 +90,8 @@ export default Vue.extend({
       testBasicModelArr: testBasicModelArr,
       testBasicModel,
       isShowUsers: false,
-      isShowConfirmModal: false
+      isShowConfirmModal: false,
+      users: []
     };
   },
   methods: {
@@ -126,6 +135,17 @@ export default Vue.extend({
           this.closeTag(this.$route);
         })
         .catch(() => {});
+    },
+    onConfirmChoiceUser(userInfo) {
+      if (userInfo.user) {
+        this.users = [userInfo.user];
+      } else {
+        this.users = this.$refs["userList"].getSelectedUsers();
+      }
+      this.isShowUsers = false;
+    },
+    onCancelChoiceUser() {
+      this.isShowUsers = false;
     }
   }
 });

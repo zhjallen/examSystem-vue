@@ -2,10 +2,17 @@
   <div class="user-list">
     <user-list-search @search="searchUser"></user-list-search>
     <div v-if="!usedPage" class="add-user" style="margin:3px">
-      <el-button  @click="addUser" size="mini">新增用户</el-button>
+      <el-button @click="addUser" size="mini">新增用户</el-button>
     </div>
 
-    <el-table :data="userList" stripe size="small" :border="true" class="header-table">
+    <el-table
+      :data="userList"
+      stripe
+      size="small"
+      :border="true"
+      class="header-table"
+      @selection-change="onSelectUserChange"
+    >
       <el-table-column v-if="usedPage==='addTest'" type="selection"></el-table-column>
       <el-table-column type="index" label="序号" width="50"></el-table-column>
       <el-table-column property="name" label="姓名" width="120"></el-table-column>
@@ -17,13 +24,20 @@
       </el-table-column>
       <el-table-column property="desc" label="描述"></el-table-column>
       <el-table-column property="operation" label="操作">
-        <template v-if="!usedPage" slot-scope="props">
-          <el-button size="small" @click="editUser(props.row)">编辑</el-button>
-          <template v-if="props.row.name!=='admin'">
-            <el-button type="danger" size="small" @click="delUser(props.row)">删除</el-button>
-          </template>
+        <template slot-scope="props">
+          <div v-if="!usedPage">
+            <el-button size="small" @click="editUser(props.row)">编辑</el-button>
+            <template v-if="props.row.name!=='admin'">
+              <el-button type="danger" size="small" @click="delUser(props.row)">删除</el-button>
+            </template>
+          </div>
+          <div v-else>
+            <slot name="userOperation" :user="props.row"></slot>
+          </div>
         </template>
-        <slot name="userOperation"></slot>
+        <!-- <template  slot-scope="props">
+          <span name="userOperation">{{props.row}}</span>
+        </template>-->
       </el-table-column>
     </el-table>
     <el-pagination
@@ -87,6 +101,7 @@ export default Vue.extend({
   data: function() {
     return {
       userList: [],
+      selectedUsers: [],
       isShowUserDialog: false,
       dialogPage: "add",
       userForm: {
@@ -125,6 +140,9 @@ export default Vue.extend({
         ...this.queryParams,
         pageSize: 10
       };
+      if (this.usedPage === "addTest") {
+        queryParams.type = 2;
+      }
       getUserListApi(queryParams)
         .then(getData => {
           this.currentPage = queryParams.page;
@@ -222,6 +240,12 @@ export default Vue.extend({
     },
     pageChange(currentPage) {
       this.getUserList({ page: currentPage });
+    },
+    onSelectUserChange(users) {
+      this.selectedUsers = users;
+    },
+    getSelectedUsers() {
+      return this.selectedUsers;
     }
   },
   filters: {
@@ -232,7 +256,11 @@ export default Vue.extend({
     }
   },
   mounted: function() {
+    // if (this.usedPage === "addTest") {
+    //   this.getUserList({ page: 1, type: 2 });
+    // } else {
     this.getUserList({ page: 1 });
+    // }
   }
 });
 </script>

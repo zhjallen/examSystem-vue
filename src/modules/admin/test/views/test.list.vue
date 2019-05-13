@@ -7,7 +7,7 @@
       @search="onSearchTest"
     >
       <div slot="operation">
-        <el-button type="primary" size="small" @click="onAddTest">新增考试</el-button>
+        <el-button size="mini" @click="onAddTest">新增考试</el-button>
       </div>
       <div slot="table">
         <el-table :data="testList" :stripe="true" size="small" :border="true" class="header-table">
