@@ -86,15 +86,13 @@ class Api {
           }
         }).catch(error => {
           tryHideFullScreenLoading()
-          reject({
-            status: error.response && error.response.status,
-            error
-          });
+          // const response = {};
+          if (error && error.response)
+            reject({
+              status: error.response && error.response.status,
+              response: error.response,
+            });
           // todo 退出处理有问题，会发一个get请求，
-          if (!error.response) {
-            router.replace("/login")
-            return;
-          }
           //const status= error.response && error.response.status,
           switch (error.response && error.response.status) {
             case 404:

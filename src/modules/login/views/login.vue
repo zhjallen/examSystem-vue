@@ -18,12 +18,12 @@
             :rules="loginRules"
             size="medium"
           >
-            <el-form-item prop="username">
+            <el-form-item prop="userName">
               <el-input
                 class="login-input"
                 type="text"
                 @keyup.enter.native="login('loginForm')"
-                v-model="loginForm.username"
+                v-model="loginForm.userName"
                 placeholder="用户名"
                 clearable
               >
@@ -62,7 +62,7 @@
            
             </el-form-item>-->
             <el-form-item>
-              <div style="margin-top:8px;">
+              <div style="margin-top:8px;width:100%">
                 <el-button
                   class="login-button"
                   type="primary"
@@ -92,12 +92,12 @@ export default {
       loginFail: false,
       loginFailMessage: "",
       loginForm: {
-        username: "",
+        userName: "",
         password: "",
         type: "1"
       },
       loginRules: {
-        username: [
+        userName: [
           {
             required: true,
             message: "请输入用户名",

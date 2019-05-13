@@ -14,7 +14,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="用户名" prop="username">
+          <el-form-item label="用户名" prop="userName">
             <el-input v-model="searchForm.username"></el-input>
           </el-form-item>
         </el-col>
@@ -34,7 +34,7 @@ export default Vue.extend({
     return {
       searchForm: {
         name: "",
-        username: ""
+        userName: ""
       }
     };
   },

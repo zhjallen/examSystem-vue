@@ -83,13 +83,13 @@ export default {
         cancelButtonText: "取消"
       })
         .then(() => {
-          this.$store
-            .dispatch("userLogout", {
-              redirectUrl: "/login"
-            })
-            .then(successData => {
+          // this.$store
+          //   .dispatch("userLogout", {
+          //     redirectUrl: "/login"
+          //   })
+          //   .then(successData => {
               this.$router.replace("/login");
-            });
+            // });
         })
         .catch(() => {});
     }

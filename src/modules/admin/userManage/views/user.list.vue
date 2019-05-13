@@ -1,15 +1,15 @@
 <template>
   <div class="user-list">
     <user-list-search @search="searchUser"></user-list-search>
-    <div v-if="!usedPage" class="add-user">
-      <el-button type="primary" @click="addUser" size="mini">新增用户</el-button>
+    <div v-if="!usedPage" class="add-user" style="margin:3px">
+      <el-button  @click="addUser" size="mini">新增用户</el-button>
     </div>
 
     <el-table :data="userList" stripe size="small" :border="true" class="header-table">
       <el-table-column v-if="usedPage==='addTest'" type="selection"></el-table-column>
       <el-table-column type="index" label="序号" width="50"></el-table-column>
       <el-table-column property="name" label="姓名" width="120"></el-table-column>
-      <el-table-column property="username" label="用户名" width="120"></el-table-column>
+      <el-table-column property="userName" label="用户名" width="120"></el-table-column>
       <el-table-column property="type" label="类别" width="120">
         <template slot-scope="props">
           <span>{{props.row.type | userTypeFilter}}</span>
@@ -23,9 +23,7 @@
             <el-button type="danger" size="small" @click="delUser(props.row)">删除</el-button>
           </template>
         </template>
-        <slot name="userOperation">
-
-        </slot>
+        <slot name="userOperation"></slot>
       </el-table-column>
     </el-table>
     <el-pagination
@@ -37,7 +35,7 @@
       @current-change="pageChange"
       small
     ></el-pagination>
-    <el-dialog title="新增用户" :visible.sync="isShowUserDialog">
+    <el-dialog :title="dialogPage=='add'?'新增用户':'编辑用户信息'" :visible.sync="isShowUserDialog">
       <el-form
         :model="userForm"
         ref="userForm"
@@ -48,8 +46,8 @@
         <el-form-item label="姓名" prop="name">
           <el-input v-model="userForm.name" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="用户名" prop="username">
-          <el-input v-model="userForm.username" autocomplete="off"></el-input>
+        <el-form-item label="用户名" prop="userName">
+          <el-input v-model="userForm.userName" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
           <el-input v-model="userForm.password" autocomplete="off" type="password"></el-input>
@@ -93,14 +91,14 @@ export default Vue.extend({
       dialogPage: "add",
       userForm: {
         name: "",
-        username: "",
+        userName: "",
         password: "123456",
         type: "2",
         desc: ""
       },
       userFormRules: {
         name: [{ required: true, message: "请输入用户姓名", trigger: "blur" }],
-        username: [
+        userName: [
           { required: true, message: "请输入用户名", trigger: "blur" }
         ],
         password: [{ required: true, message: "请输入密码", trigger: "blur" }]
@@ -162,17 +160,28 @@ export default Vue.extend({
       this.$refs[formName].validate(isValid => {
         if (isValid) {
           if (this.dialogPage === "add") {
-            addUserApi(this.userForm).then(successData => {
-              if (successData.status === 200) {
+            addUserApi(this.userForm)
+              .then(successData => {
+                if (successData.status === 200) {
+                  this.$message({
+                    type: "success",
+                    message: "新增用户成功"
+                  });
+                  this.$refs[formName].resetFields();
+                  this.isShowUserDialog = false;
+                  this.getUserList({ page: 1 });
+                }
+              })
+              .catch(err => {
+                let message = "";
+                if (err.response) {
+                  message = err.response.data.message;
+                }
                 this.$message({
-                  type: "success",
-                  message: "新增用户成功"
+                  type: "error",
+                  message
                 });
-                this.$refs[formName].resetFields();
-                this.isShowUserDialog = false;
-                this.getUserList({ page: 1 });
-              }
-            });
+              });
           } else if (this.dialogPage === "edit") {
             updateUserApi(this.userForm).then(getData => {
               if (getData.status === 200) {

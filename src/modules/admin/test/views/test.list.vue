@@ -92,16 +92,18 @@ export default Vue.extend({
         console.log(getData, "getdata");
         if (getData.status === 200) {
           this.testList = getData.data.tests.map(item => {
-            return Object.assign({}, item, {
-              startTime: moment(item.startTime)
-                .utc()
-                .zone(-8)
-                .format("YYYY-MM-DD HH:mm:ss"),
-              finishTime: moment(item.finishTime)
-                .utc()
-                .zone(-8)
-                .format("YYYY-MM-DD HH:mm:ss")
-            });
+            return Object.assign({}, item,
+            //  {
+            //   startTime: moment(item.startTime)
+            //     .utc()
+            //     .zone(-8)
+            //     .format("YYYY-MM-DD HH:mm:ss"),
+            //   finishTime: moment(item.finishTime)
+            //     .utc()
+            //     .zone(-8)
+            //     .format("YYYY-MM-DD HH:mm:ss")
+            // }
+            );
           });
           this.totalNum = getData.data.total;
         }

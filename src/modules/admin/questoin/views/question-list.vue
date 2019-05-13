@@ -1,7 +1,7 @@
 <template>
   <div class="question-list">
     <question-list-search @searchQuestion="searchQuestion"/>
-    <el-button size="small" type="primary" class="add-queston" @click="enterAddQuestion">新增试题</el-button>
+    <el-button size="mini"  class="add-queston" @click="enterAddQuestion">新增试题</el-button>
     <el-table :data="questionList" :stripe="true" size="small" :border="true" class="header-table">
       <el-table-column type="index" label="序号" width="60"></el-table-column>
       <el-table-column prop="name" label="试题名称" width="180"></el-table-column>

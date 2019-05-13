@@ -1,4 +1,11 @@
 .question-list {
   .add-queston {
+    margin: 3px 0;
+  }
+  .question-list-search {
+    padding-top: 5px;
+    .el-form-item {
+      margin-bottom: 8px;
+    }
   }
 }

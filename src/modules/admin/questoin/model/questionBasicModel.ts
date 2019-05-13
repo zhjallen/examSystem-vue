@@ -3,7 +3,7 @@ const questionBasicModel = {
         { value: 1, label: "单选" },
         { value: 2, label: "多选" },
         { value: 3, label: "判断" },
-        { value: 4, label: "填空" },
+        // { value: 4, label: "填空" },
         { value: 5, label: "问答" },
     ],
     difficultyModel: [

@@ -3,7 +3,7 @@
     
       <h4>{{testInfo.name}}</h4>
       <div>
-          <label> 考试时间：</label>
+          <label>考试时间：</label>
           <span>{{testInfo.startTime}}--{{testInfo.finishTime}}</span>
           <label>考试时长：</label>
           <span>{{testInfo.length}}分钟</span>

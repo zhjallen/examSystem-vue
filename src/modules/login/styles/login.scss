@@ -4,26 +4,26 @@
   flex-direction: column;
   height: 100vh;
   position: relative;
-  .logo{
+  .logo {
     height: 4rem;
     line-height: 4rem;
     text-align: left;
     background-color: #202a3a;
     border-bottom: 1px solid white;
-    span{
+    span {
       margin-left: 1rem;
       font-size: 1.5rem;
       color: white;
     }
   }
-  .main-login{
+  .main-login {
     // border: 2px solid red;
     height: 100%;
     position: relative;
     background-color: #202a3a;
-    .img-login{
+    .img-login {
       position: absolute;
-      top:25%;
+      top: 25%;
       left: 10%;
     }
     .login-wrapper {
@@ -31,10 +31,10 @@
       top: 50%;
       left: 70%;
       transform: translate(-50%, -50%);
-  
+
       min-height: 250px;
       width: 300px;
-  
+
       z-index: 10;
       display: flex;
       justify-content: center;
@@ -44,7 +44,7 @@
       border-radius: 2rem;
       background-color: white;
       box-shadow: 0 0 45px rgba(0, 0, 0, 0.18);
-  
+
       .login-block {
         display: flex;
         justify-content: center;
@@ -52,7 +52,7 @@
         height: 200px;
         width: 300px;
         margin-left: 1rem 2rem;
-  
+
         .sys-logo {
           font-size: 1.2rem;
           text-align: center;
@@ -62,20 +62,23 @@
         }
         .login-form {
           padding-top: 1rem;
-          .formItem.imageCode {
-            .el-form-item__content{
-              display: flex;
-              flex-direction: row;
+          .el-form-item__content {
+            display: flex;
+            flex-direction: row;
+            width: 100% ;
+            .el-input__inner {
+              padding-left: 18px;
             }
-           
-            .login-input{
+          }
+          .formItem.imageCode {
+            .login-input {
               width: 50%;
             }
           }
           .login-input {
             width: 100%;
           }
-  
+
           .login-button {
             width: 100%;
             border-radius: 18px;
@@ -86,6 +89,4 @@
       }
     }
   }
-  
-  
 }
