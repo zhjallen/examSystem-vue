@@ -45,7 +45,7 @@ const methods = [
   "patch",
   "delete"
 ]
-axios.defaults.timeout = 10000;
+axios.defaults.timeout = 20000;
 let baseURL = "";
 process.env.NODE_ENV === "development" ? baseURL = "/api" :
   process.env.NODE_ENV === "test" ? baseURL = "http://192.168.0.220:90" :

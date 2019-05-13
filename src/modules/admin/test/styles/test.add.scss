@@ -3,3 +3,18 @@
     width: 100%;
   }
 }
+.test-users {
+  .user {
+    display: inline-block;
+    margin-right: 8px;
+    .close {
+      border-radius: 15px;
+      cursor: pointer;
+      &:hover {
+        color: darken($base-red-color, 30%);
+        font-weight: 600;
+        background-color: lighten($base-red-color, 5%);
+      }
+    }
+  }
+}

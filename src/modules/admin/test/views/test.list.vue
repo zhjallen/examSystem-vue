@@ -31,7 +31,11 @@
             </template>
           </el-table-column>
           <el-table-column prop="totalScore" label="卷面总分"></el-table-column>
-          <el-table-column prop="status" label="考试人数"></el-table-column>
+          <el-table-column prop="users" label="考试人数">
+            <template slot-scope="props">
+              <span>{{props.row.users.length}}</span>
+            </template>
+          </el-table-column>
           <el-table-column prop="operation" label="操作" width="230">
             <template slot-scope="props">
               <div>
@@ -50,6 +54,7 @@
           layout="total, prev, pager, next"
           :total="totalNum"
           small
+          @current-change="onPageChange"
         ></el-pagination>
       </div>
     </my-table>
@@ -89,29 +94,20 @@ export default Vue.extend({
         pageSize: 10
       };
       getTestListApi(queryParams).then(getData => {
-        console.log(getData, "getdata");
         if (getData.status === 200) {
           this.testList = getData.data.tests.map(item => {
-            return Object.assign({}, item,
-            //  {
-            //   startTime: moment(item.startTime)
-            //     .utc()
-            //     .zone(-8)
-            //     .format("YYYY-MM-DD HH:mm:ss"),
-            //   finishTime: moment(item.finishTime)
-            //     .utc()
-            //     .zone(-8)
-            //     .format("YYYY-MM-DD HH:mm:ss")
-            // }
-            );
+            return Object.assign({}, item);
           });
-          this.totalNum = getData.data.total;
+          this.totalNum = getData.data.count;
         }
       });
     },
     onSearchTest(searchFormModel) {
       this.queryParams = getQueryParams(searchFormModel);
       this.getTestList({ page: 1 });
+    },
+    onPageChange(page) {
+      this.getTestList({ page });
     },
     onAddTest() {
       this.$router.push(`/admin/test/add`);

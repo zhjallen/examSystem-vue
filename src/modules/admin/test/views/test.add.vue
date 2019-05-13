@@ -16,11 +16,17 @@
         <el-row>
           <el-form-item label="考生">
             <div>
+              <template v-for="user in users">
+                <div :key="user.id" class="user" @click="onDelUser(user)">
+                  <span :key="user.id">{{user.name}}</span>
+                  <span class="close el-icon-close"></span>
+                </div>
+              </template>
               <el-button-group>
                 <el-button @click="onAddUsers">
                   <i class="fa fa-user-plus">添加考生</i>
                 </el-button>
-                <el-button>
+                <el-button @click="onClearUsers">
                   <i class="fa fa-minus">清除考生</i>
                 </el-button>
               </el-button-group>
@@ -101,7 +107,8 @@ export default Vue.extend({
         const testBasicInfo = {
           ...this.testBasicModel,
           startTime: this.testBasicModel["testTime"][0],
-          finishTime: this.testBasicModel["testTime"][1]
+          finishTime: this.testBasicModel["testTime"][1],
+          users: this.users
         };
         addTestApi(testBasicInfo).then(getData => {
           console.log(getData, "dddddddddd");
@@ -118,6 +125,12 @@ export default Vue.extend({
     },
     onAddUsers() {
       this.isShowUsers = true;
+    },
+    onClearUsers() {
+      this.users = [];
+    },
+    onDelUser(userInfo) {
+      this.users = this.users.filter(user => user.id !== userInfo.id);
     },
     goTestList() {
       this.$router.push(`/admin/test/list`);
